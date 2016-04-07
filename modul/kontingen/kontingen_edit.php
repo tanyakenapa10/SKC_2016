@@ -11,6 +11,8 @@ $val	= $id;
 $q 	    = $kontingen->fetch_single_row($table,$col,$val);
 
 $isi	= $q->isi_kontingen;
+$nama =$q->nama;
+$kontak =$q->kontak;
 
 ?>
 
@@ -24,9 +26,25 @@ $isi	= $q->isi_kontingen;
 <form class="form-horizontal" role="form" method="post" action="#">
   <!-- Text input-->
   <div class="form-group">
-    <label class="col-md-4 control-label" for="isi">Nama kontingen</label>  
+    <label class="col-md-4 control-label" for="isi">Nama Kontingen</label>  
     <div class="col-md-6">
-    <input id="isi" name="isi" type="text" placeholder="Data Tersimpan: <?php echo $isi; ?>" class="form-control input-md" required="" value="<?php echo $isi; ?>">
+    <input name="isi" type="text" placeholder="Data Tersimpan: <?php echo $isi; ?>" class="form-control input-md" required="" value="<?php echo $isi; ?>">
+      
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="isi">Nama Official</label>  
+    <div class="col-md-6">
+    <input name="nama" type="text" placeholder="Data Tersimpan: <?php echo $nama; ?>" class="form-control input-md" required="" value="<?php echo $nama; ?>">
+      
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="isi">Kontak Official</label>  
+    <div class="col-md-6">
+    <input name="kontak" type="text" placeholder="Data Tersimpan: <?php echo $kontak; ?>" class="form-control input-md" required="" value="<?php echo $kontak; ?>">
       
     </div>
   </div>
@@ -45,9 +63,13 @@ $isi	= $q->isi_kontingen;
 if(isset($_POST[submit])){
 	$table_up	= "kontingen_all";
     $isi = str_replace('"', '``', $_POST[isi]);
-    $isi = str_replace("'", "`", $isi);  
+    $isi = str_replace("'", "`", $isi);
+    $nama = $_POST[nama];
+    $kontak = $_POST[kontak];  
 	$data_up	= array(
-                   'isi_kontingen'          => $isi
+                   'isi_kontingen' => $isi,
+                    'nama'=>$nama,
+                    'kontak'=>$kontak
                          );
 	$prim_col	= "id_kontingen";
 	// $id didefinisikan diatas;
